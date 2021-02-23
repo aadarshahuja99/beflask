@@ -1,0 +1,7 @@
+@app.route('/predict_api/')
+def predict_api():
+    nq = request.args['imgs']
+    f = io.BytesIO(base64.b64decode(nq))
+    image=f.read()
+    category=get_class_name(image_bytes=image)
+    return jsonify({"prediction":str(category)})

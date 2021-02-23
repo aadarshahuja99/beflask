@@ -1,0 +1,8 @@
+Flask==1.0.2
+gunicorn==19.9.0
+Jinja2==2.10.1
+torchvision==0.2.1
+numpy==1.15.4
+Pillow==5.3.0
+
+

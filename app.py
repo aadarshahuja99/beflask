@@ -7,6 +7,8 @@ import io
 import base64
 from PIL import Image
 from base64 import decodestring
+import requests
+
 app = Flask(__name__)
 @app.route('/',methods=['GET','POST'])
 def hello_world() :
@@ -29,6 +31,18 @@ def predict_api():
     print(nq['mytext'])
     bytestr=nq['mytext'].encode('utf-8')
     f = io.BytesIO(base64.b64decode(bytestr))
+    image=f.read()
+    category=get_class_name(image_bytes=image)
+    print(category)
+    return jsonify({"prediction":str(category)})
+
+@app.route('/predictapi/', methods=['GET', 'POST'])
+def predict_api():
+    nq = request.json
+    print(nq['mytext'])
+    resp=requests.get(nq['mytext'])
+    imagebytes = io.BytesIO(resp.content)
+    f = io.BytesIO(imagebytes)
     image=f.read()
     category=get_class_name(image_bytes=image)
     print(category)

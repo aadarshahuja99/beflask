@@ -26,5 +26,5 @@ def get_tensor(image_bytes) :
                                            transforms.ToTensor(),
                                            transforms.Normalize([0.485, 0.456, 0.406],
                                                                 [0.229, 0.224, 0.225])])
-    image=Image.open(io.BytesIO(image_bytes))
+    image=Image.open(image_bytes)
     return test_transforms(image).unsqueeze(0)

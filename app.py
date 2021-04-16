@@ -20,6 +20,7 @@ def hello_world() :
             return
         file = request.files['file']
         image=file.read()
+        print(image)
         category=get_class_name(image_bytes=image)
         #print(get_tensor(image_bytes=image))
         #print(tensor.shape)
@@ -41,10 +42,11 @@ def predict_api():
     nq = request.json
     print(nq['mytext'])
     resp=requests.get(nq['mytext'])
+    print(resp)
     imagebytes = io.BytesIO(resp.content)
-    f = io.BytesIO(imagebytes)
-    image=f.read()
-    category=get_class_name(image_bytes=image)
+    f = Image.open(imagebytes)
+    f.show()
+    category=get_class_name(image_bytes=imagebytes)
     print(category)
     return jsonify({"prediction":str(category)})
 

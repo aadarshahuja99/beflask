@@ -49,4 +49,4 @@ def predict_api():
     return jsonify({"prediction":str(category)})
 
 if __name__=='__main__':
-    app.run(debug=True,port=os.getenv('PORT',5000))
+    app.run(debug=True)

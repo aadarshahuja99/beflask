@@ -25,18 +25,18 @@ def hello_world() :
         #print(tensor.shape)
         return render_template('result.html',flower=category)
 
-@app.route('/predict_api/', methods=['GET', 'POST'])
-def predict_api():
-    nq = request.json
-    print(nq['mytext'])
-    bytestr=nq['mytext'].encode('utf-8')
-    f = io.BytesIO(base64.b64decode(bytestr))
-    image=f.read()
-    category=get_class_name(image_bytes=image)
-    print(category)
-    return jsonify({"prediction":str(category)})
+# @app.route('/predict_api/', methods=['GET', 'POST'])
+# def predict_api():
+#     nq = request.json
+#     print(nq['mytext'])
+#     bytestr=nq['mytext'].encode('utf-8')
+#     f = io.BytesIO(base64.b64decode(bytestr))
+#     image=f.read()
+#     category=get_class_name(image_bytes=image)
+#     print(category)
+#     return jsonify({"prediction":str(category)})
 
-@app.route('/predictapi/', methods=['GET', 'POST'])
+@app.route('/predict/', methods=['GET', 'POST'])
 def predict_api():
     nq = request.json
     print(nq['mytext'])
